@@ -1,6 +1,6 @@
-#N canvas 96 188 779 566 12;
+#N canvas -1012 196 774 459 12;
 #X obj 113 187 metro_bpm;
-#X obj 113 166 tgl 15 0 empty empty empty 17 7 0 10 -262144 -1 -1 1
+#X obj 113 166 tgl 15 0 empty empty empty 17 7 0 10 -262144 -1 -1 0
 1;
 #X obj 173 116 loadbang;
 #X msg 173 140 120;
@@ -52,34 +52,88 @@
 #X obj 212 145 r reset_bpm;
 #X obj 496 90 bng 15 250 50 0 empty empty empty 17 7 0 10 -262144 -1
 -1;
-#X obj 220 391 time_signature;
-#X obj 267 315 r metro_ms;
-#X obj 220 422 bng 15 250 50 0 empty empty empty 17 7 0 10 -262144
+#X obj 246 306 time_signature;
+#X obj 293 230 r metro_ms;
+#X obj 246 337 bng 15 250 50 0 empty empty empty 17 7 0 10 -262144
 -1 -1;
-#X obj 267 422 hradio 15 1 0 12 empty empty empty 0 -8 0 10 -262144
--1 -1 1;
-#X obj 220 365 r power;
-#X msg 315 365 \$1 8;
+#X obj 299 337 hradio 15 1 0 12 empty empty empty 0 -8 0 10 -262144
+-1 -1 5;
+#X obj 246 280 r power;
+#X msg 341 280 \$1 8;
 #X obj 316 129 s hi_ts;
-#X obj 315 337 r hi_ts;
-#X obj 526 388 time_signature;
-#X obj 573 312 r metro_ms;
-#X obj 526 419 bng 15 250 50 0 empty empty empty 17 7 0 10 -262144
+#X obj 341 252 r hi_ts;
+#X obj 503 306 time_signature;
+#X obj 550 230 r metro_ms;
+#X obj 503 337 bng 15 250 50 0 empty empty empty 17 7 0 10 -262144
 -1 -1;
-#X obj 573 419 hradio 15 1 0 12 empty empty empty 0 -8 0 10 -262144
--1 -1 4;
-#X obj 526 362 r power;
-#X msg 621 362 \$1 8;
-#X obj 621 334 r low_ts;
+#X obj 557 337 hradio 15 1 0 12 empty empty empty 0 -8 0 10 -262144
+-1 -1 0;
+#X obj 503 280 r power;
+#X msg 598 280 \$1 8;
+#X obj 598 252 r low_ts;
 #X floatatom 173 85 5 0 0 0 - - -;
 #X obj 113 54 route /power /metro;
-#X obj 363 392 bng 15 250 50 0 empty empty empty 17 7 0 10 -262144
+#X obj 389 307 bng 15 250 50 0 empty empty empty 17 7 0 10 -262144
 -1 -1;
 #X obj 401 14 MIDI_DrumMachine_JeremyJazz;
 #X obj 316 83 change;
 #X floatatom 406 107 5 0 0 0 - - -;
 #X obj 406 83 change;
 #X obj 406 129 s low_ts;
+#N canvas -788 217 450 300 play_hi_drums 0;
+#X obj 19 15 inlet;
+#X obj 64 253 s jj-sbass;
+#X obj 172 253 s jj-hbass;
+#X obj 94 15 r hi_ts;
+#X obj 94 39 t b f;
+#X obj 94 63 13;
+#X obj 94 88 -;
+#X obj 19 124 +;
+#X obj 19 162 sel 0 1 2 3 4 5 6 7 8 9 10 11 12;
+#X connect 0 0 7 0;
+#X connect 3 0 4 0;
+#X connect 4 0 5 0;
+#X connect 4 1 6 1;
+#X connect 5 0 6 0;
+#X connect 6 0 7 1;
+#X connect 7 0 8 0;
+#X connect 8 2 1 0;
+#X connect 8 3 2 0;
+#X connect 8 6 1 0;
+#X connect 8 7 2 0;
+#X connect 8 10 1 0;
+#X connect 8 11 2 0;
+#X restore 293 362 pd play_hi_drums;
+#N canvas -957 221 328 300 play_low_drums 0;
+#X obj 19 15 inlet;
+#X obj 94 39 t b f;
+#X obj 94 63 13;
+#X obj 94 88 -;
+#X obj 19 124 +;
+#X obj 19 162 sel 0 1 2 3 4 5 6 7 8 9 10 11 12;
+#X obj 94 15 r low_ts;
+#X obj 50 240 s jj-snare;
+#X obj 158 240 s jj-hihat;
+#X connect 0 0 4 0;
+#X connect 1 0 2 0;
+#X connect 1 1 3 1;
+#X connect 2 0 3 0;
+#X connect 3 0 4 1;
+#X connect 4 0 5 0;
+#X connect 5 0 7 0;
+#X connect 5 1 8 0;
+#X connect 5 2 7 0;
+#X connect 5 2 8 0;
+#X connect 5 3 8 0;
+#X connect 5 6 7 0;
+#X connect 5 6 8 0;
+#X connect 5 7 8 0;
+#X connect 5 10 7 0;
+#X connect 5 10 8 0;
+#X connect 5 11 8 0;
+#X connect 5 12 8 0;
+#X connect 6 0 1 0;
+#X restore 550 363 pd play_low_drums;
 #X connect 0 0 5 0;
 #X connect 0 1 6 0;
 #X connect 1 0 0 0;
@@ -107,6 +161,7 @@
 #X connect 21 0 19 0;
 #X connect 22 0 24 0;
 #X connect 22 1 25 0;
+#X connect 22 1 45 0;
 #X connect 23 0 22 1;
 #X connect 26 0 22 0;
 #X connect 27 0 22 2;
@@ -114,6 +169,7 @@
 #X connect 29 0 27 0;
 #X connect 30 0 32 0;
 #X connect 30 1 33 0;
+#X connect 30 1 46 0;
 #X connect 31 0 30 1;
 #X connect 34 0 30 0;
 #X connect 35 0 30 2;
