@@ -3,3 +3,6 @@
 *.asd
 /data_secret
 /GlucosePiece Project/MIDI samples
+*.pptx
+*.mp3
+/outputs
