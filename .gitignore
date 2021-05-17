@@ -2,10 +2,9 @@
 /00 archive
 *.asd
 /data_secret
-/GlucosePiece Project/MIDI samples
 *.pptx
 *.mp3
 /outputs
-/GlucosePiece Project
+PolyGlucose Project
 *.mp4
 /drum_samples
